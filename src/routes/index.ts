@@ -4,6 +4,7 @@ import { PropertyController } from "../controllers/propertys.controller";
 import { upload } from "../middlewares";
 import { uploadGallery } from "../middlewares/gallery.upload";
 import { InterestsController } from "../controllers/interests.controller";
+import { BrokerController } from "../controllers/brokers.controller";
 
 const routes=Router()
 
@@ -13,6 +14,13 @@ routes.post("/auth/sigin",UserController.sigIn)
 routes.post("/auth/register",UserController.registerUser)
 routes.put("/users/:id",upload.single('photo'),UserController.updateUserId)
 routes.delete("/users/:id",UserController.deleteUserId)
+
+routes.get("/brokers",BrokerController.getBrokersAll)
+routes.get("/brokers/:id",BrokerController.getBrokerId)
+routes.post("/auth/broker/sigin",BrokerController.SigInBroker)
+routes.post("/auth/broker/register",BrokerController.addNewBroker)
+routes.put("/brokers/:id",upload.single('photo'),BrokerController.updateBrokerId)
+routes.delete("/brokers/:id",BrokerController.deleteBrokerId)
 
 
 routes.get("/propertys",PropertyController.getAllPropertys)
